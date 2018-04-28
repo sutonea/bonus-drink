@@ -18,7 +18,6 @@ class BonusDrink
     end
 
     def total_count_for(amount)
-      puts "処理開始 amount: #{amount}"
       get_bottles(amount)
       while can_get_bonus?
         change_bottles
@@ -29,15 +28,9 @@ class BonusDrink
     private
 
     def change_bottles
-      puts "------------"
-      puts "変換前 手元のボトル:#{@hand_bottles}"
       bonus = @hand_bottles / self.class.count_for_bonus
-      puts "ボーナスボトル:#{bonus}"
       @hand_bottles -= bonus * self.class.count_for_bonus
-      puts "支払後 手元のボトル:#{@hand_bottles}"
-      result = get_bottles(bonus)
-      puts "変換後 手元のボトル:#{@hand_bottles}"
-      result
+      get_bottles(bonus)
     end
 
     def get_bottles(amount)
